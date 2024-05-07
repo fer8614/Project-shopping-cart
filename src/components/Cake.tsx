@@ -23,7 +23,7 @@ export default function Cake( { cake, addToCart } : GuitarProps ) {
                           type="button"
                           className="btn btn-dark w-100"
                           onClick={ () => addToCart( cake )}
-                      >Agregar al Carrito</button>
+                      >Add to cart</button>
                   </div>
               </div>
     )

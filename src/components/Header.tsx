@@ -30,17 +30,17 @@ export default function Header( { cart, removeFromCart, increaseQuantity, decrea
                         <div id="carrito" className="bg-white p-3">
 
                             { isEmpty ? (
-                                <p className="text-center">El carrito esta vacio</p>
+                                <p className="text-center">The cart is empty</p>
                                 
                             ) : (
                             <>    
                                 <table className="w-100 table">
                                     <thead>
                                         <tr>
-                                            <th>Imagen</th>
-                                            <th>Nombre</th>
-                                            <th>Precio</th>
-                                            <th>Cantidad</th>
+                                            <th>Image</th>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -85,10 +85,10 @@ export default function Header( { cart, removeFromCart, increaseQuantity, decrea
                                     </tbody>
                                 </table>
                             
-                                <p className="text-end">Total pagar: <span className="fw-bold">${ cartTotal }</span></p>
+                                <p className="text-end">Total to pay: <span className="fw-bold">${ cartTotal }</span></p>
                             </>
                             )}
-                            <button className="btn btn-dark w-100 mt-3 p-2" onClick={ clearCart }>Vaciar Carrito</button>
+                            <button className="btn btn-dark w-100 mt-3 p-2" onClick={ clearCart }>Empty cart</button>
                         </div>
                     </div>
                 </nav>

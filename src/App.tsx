@@ -20,7 +20,7 @@ export default function App() {
      />
 
       <main className="container-xl mt-5">
-          <h2 className="text-center">Nuestra Colección</h2>
+          <h2 className="text-center">Our products</h2>
 
           <div className="row mt-5">
               {data.map( ( cake ) => (
@@ -36,7 +36,7 @@ export default function App() {
 
       <footer className="bg-dark mt-5 py-5">
           <div className="container-xl">
-              <p className="text-white text-center fs-4 mt-4 m-md-0">GuitarLA - Todos los derechos Reservados</p>
+              <p className="text-white text-center fs-4 mt-4 m-md-0">Ana Cake - All rights reserved</p>
           </div>
       </footer>
 
