@@ -1,14 +1,14 @@
 
 
 
-node_modules/
-dist/
+node_modules
+dist
 
 # Logs
 .DS_Store
 
 
-logs/
+logs
 
 
 .env
