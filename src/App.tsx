@@ -1,12 +1,16 @@
+import { useReducer } from "react";
 import Header from "./components/Header"
 import Cake from "./components/Cake"
 import { useCart } from "./hooks/useCart"
+import { cartReducer, inititalState } from "./reducers/cart-reducer";
 
 export default function App() {
 
   const { data, cart, addToCart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart, isEmpty, cartTotal } = useCart();
+  
+  const [ state, dispatch ] = useReducer( cartReducer, inititalState)
 
-
+  console.log(state);
   return (
     <>
      <Header
