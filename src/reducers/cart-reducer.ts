@@ -2,7 +2,7 @@
 import { db } from "../data/db"
 import { Cake, CartItem } from "../types/index"
 export type CartActions = 
-    { type: 'ADD_TO_CART', payload: { cake: Cake, quantity: number } } |
+    { type: 'ADD_TO_CART', payload: { item: Cake } } |
     { type: 'REMOVE_FROM_CART', payload: { id : Cake['id'] } } |
     { type: 'INCREASE_QUANTITY', payload: { id : Cake['id'] } } |
     { type: 'DECREASE_QUANTITY', payload: { id : Cake['id'] } } |
@@ -18,15 +18,46 @@ export const inititalState : CartState = {
     cart: []
 }
 
+const max_items = 5;
+const min_items = 1;
+
 export const cartReducer = ( 
         state: CartState = inititalState, 
         action: CartActions 
     ) => { 
     
     if ( action.type === 'ADD_TO_CART' ) {
+        console.log('From add to cart');
 
+        const ItemExistIndex = state.cart.find(searchItem => searchItem.id === action.payload.item.id);
+
+            let updatedCart: CartItem[] = [];
+            if (ItemExistIndex) {
+                updatedCart = state.cart.map( item => {
+                    if ( item.id === action.payload.item.id ) { 
+                        if( item.quantity < max_items ) {
+                            return {
+                                ...item,
+                                quantity: item.quantity + 1
+                            }
+                        } else {
+                            return item
+                        }
+                    } else {
+                        return item
+                    }
+                })
+            } else {
+              const newItem : CartItem = {
+                ...action.payload.item,  
+                quantity : 1,
+              }
+              updatedCart = [...state.cart, newItem];
+            }
+             
         return {
             ...state,
+            cart: updatedCart
         }
     }
 

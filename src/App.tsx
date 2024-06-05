@@ -6,11 +6,10 @@ import { cartReducer, inititalState } from "./reducers/cart-reducer";
 
 export default function App() {
 
-  const { data, cart, addToCart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart, isEmpty, cartTotal } = useCart();
+  const { cart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart, isEmpty, cartTotal } = useCart();
   
   const [ state, dispatch ] = useReducer( cartReducer, inititalState)
 
-  console.log(state);
   return (
     <>
      <Header
@@ -27,11 +26,11 @@ export default function App() {
           <h2 className="text-center">Our products</h2>
 
           <div className="row mt-5">
-              {data.map( ( cake ) => (
+              {state.data.map( ( cake ) => (
                   <Cake 
                     key={cake.id}
                     cake={cake}
-                    addToCart={addToCart}
+                    dispatch={dispatch}
                   />
               ))}
           </div>
