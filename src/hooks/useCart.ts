@@ -1,5 +1,5 @@
-import { useEffect, useState, useMemo } from "react"
-import type { Cake, CartItem } from "../types/index"
+import { useEffect, useState } from "react";
+import type { Cake, CartItem } from "../types/index";
 
 export const useCart = () => {
     
@@ -53,18 +53,12 @@ export const useCart = () => {
         setCart( [] )
       }
 
-      //state derivado
-    const isEmpty = useMemo( () => cart.length === 0, [ cart ] );
-    const cartTotal = useMemo( () => cart.reduce( ( total, item ) => total + (item.quantity * item.price), 0 ), [ cart ] );
-
     return { 
         cart,
         removeFromCart,
         increaseQuantity,
         decreaseQuantity,
         clearCart,
-        isEmpty,
-        cartTotal,
     }
 }
 
