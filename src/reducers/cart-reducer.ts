@@ -87,16 +87,26 @@ export const cartReducer = (
     }
 
     if ( action.type === 'DECREASE_QUANTITY' ) {
-        
+        const updateCart = state.cart.map( item => {
+            if ( item.id === action.payload.id && item.quantity > min_items ) {
+              return {
+                ...item,
+                quantity: item.quantity - 1
+              }
+            }
+            return item
+          })
         return {
-            ...state
+            ...state,
+            cart: updateCart
         }
     }
 
     if ( action.type === 'CLEAR_CART' ) {
         
         return {
-            ...state
+            ...state,
+            cart: []
         }
     }
 

@@ -1,13 +1,10 @@
 import { useReducer } from "react";
-import Header from "./components/Header"
-import Cake from "./components/Cake"
-import { useCart } from "./hooks/useCart"
+import Header from "./components/Header";
+import Cake from "./components/Cake";
 import { cartReducer, inititalState } from "./reducers/cart-reducer";
 
 export default function App() {
 
-  const { decreaseQuantity, clearCart } = useCart();
-  
   const [ state, dispatch ] = useReducer( cartReducer, inititalState)
 
   return (
@@ -15,8 +12,6 @@ export default function App() {
      <Header
       cart={state.cart}
       dispatch={dispatch}
-      decreaseQuantity={decreaseQuantity}
-      clearCart={clearCart}
      />
 
       <main className="container-xl mt-5">

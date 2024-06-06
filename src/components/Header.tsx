@@ -1,14 +1,12 @@
-import { useMemo, Dispatch} from 'react';
-import type { CartItem, Cake } from '../types/index'
+import { useMemo, Dispatch } from 'react';
+import type { CartItem } from '../types/index';
 import type { CartActions } from '../reducers/cart-reducer';
 
 type HeaderProps = {
     cart: CartItem[],
     dispatch: Dispatch<CartActions>,
-    decreaseQuantity: ( id : Cake['id'] ) => void,
-    clearCart: () => void,
 }
-export default function Header( { cart, dispatch, decreaseQuantity, clearCart } : HeaderProps ) {
+export default function Header( { cart, dispatch } : HeaderProps ) {
 
       //state derivado
       const isEmpty = useMemo( () => cart.length === 0, [ cart ] );
@@ -60,7 +58,7 @@ export default function Header( { cart, dispatch, decreaseQuantity, clearCart } 
                                                     <button
                                                         type="button"
                                                         className="btn btn-dark"
-                                                        onClick={ () => decreaseQuantity( cake.id ) }
+                                                        onClick={ () => dispatch({ type: 'DECREASE_QUANTITY', payload: { id: cake.id } }) }
                                                     >
                                                         -
                                                     </button>
@@ -90,7 +88,7 @@ export default function Header( { cart, dispatch, decreaseQuantity, clearCart } 
                                 <p className="text-end">Total to pay: <span className="fw-bold">${ cartTotal }</span></p>
                             </>
                             )}
-                            <button className="btn btn-dark w-100 mt-3 p-2" onClick={ clearCart }>Empty cart</button>
+                            <button className="btn btn-dark w-100 mt-3 p-2" onClick={ () => { dispatch({ type: 'CLEAR_CART' }) }  }>Empty cart</button>
                         </div>
                     </div>
                 </nav>
