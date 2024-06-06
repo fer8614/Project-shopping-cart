@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
 import Header from "./components/Header";
 import Cake from "./components/Cake";
 import { cartReducer, inititalState } from "./reducers/cart-reducer";
@@ -6,6 +6,10 @@ import { cartReducer, inititalState } from "./reducers/cart-reducer";
 export default function App() {
 
   const [ state, dispatch ] = useReducer( cartReducer, inititalState)
+
+  useEffect( () => {
+    localStorage.setItem( 'cart', JSON.stringify( state.cart ) )
+  }, [ state.cart ] )
 
   return (
     <>
